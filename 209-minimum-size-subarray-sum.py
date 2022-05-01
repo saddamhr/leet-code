@@ -1,49 +1,67 @@
 from typing import List
 
+
 class Solution:
     def minSubArrayLen(self, nums: List[int], target: int) -> int:
-        start = 0
-        end = len(nums) - 1
-        length = 0
-        # index = -1
-        # sum = 0
-        while(start <= end):
-            sum = 0
-            mid = (start + end) // 2
-            if target == nums[mid]:
-                length = 1
-                # index = mid
+        """
+        :type s: int
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        # approach:
+        #     1. build a prefix list and iterate it
+        #     2. at each iteration, use binary search to find prefix+s
+        #     3. after search done, get length between left and i
+
+        n = len(nums)
+        result = n + 1
+
+        if n == 0:
+            return 0
+
+        # build prefix sums array
+        prefix = [0 for i in range(n+1)]
+        for i in range(1, n+1):
+            prefix[i] = prefix[i-1] + nums[i-1]
+        print(prefix)
+
+        # for each iteration i, we try to use binary search to find
+        # prefix[i] + s, which means the sum of subarray between i
+        # and left will be more than s
+        for i in range(n):
+            left = i + 1
+            right = n
+            # target = prefix[i] + s
+            target = prefix[i] + target
+
+            while left <= right:
+                m = left + (right - left) // 2
+
+                if prefix[m] < target:
+                    left = m + 1
+
+                # in both greater and equal cases, we have to update
+                # right index for finding the leftist sum which is
+                # larger than target
+                else:
+                    right = m - 1
+
+            # end for-loop immediately if left is greater than n because
+            # it means every sum will be less than targer in following iteration
+            if left > n:
                 break
-            elif nums[mid] < target:
-                start = mid + 1
-                sub_arr = nums[start:end+1]
-                print('sub arr-->',sub_arr)
-                for i in sub_arr:
-                    sum += i
-                print('sum1-->', sum)
-                if sum == target:
-                    length = len(sub_arr)
-                    break
-            elif nums[end] > target:
-                end = mid - 1
-                sub_arr = nums[start] + nums[end]
-                for i in sub_arr:
-                    sum += i
-                print('sum2-->', sum)
-                if sum == target:
-                    length = len(sub_arr)
-                    break
-        return length
-        # sub_arr = nums[start] + nums[end]
-        # for i in sub_arr:
-        #     sum += i
-        # if sum == target:
-        #     return len(sub_arr)
-        # else:
-        #     return 0
+
+            # if left is valid, left will be the leftist element that is
+            # larger than target, so length between left and i is what we need
+            if left - i < result:
+                result = left - i
+
+        return 0 if result > n else result
 
 
 s = Solution()
-sorted_arr = sorted([2, 3, 1, 2, 4, 3])
+sorted_arr = sorted(
+    [12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12])
 # print(sorted_arr)
-print(s.minSubArrayLen(sorted_arr, 7))
+print(s.minSubArrayLen(sorted_arr, 213))  # 1, 2, 2, 3, 3, 4
