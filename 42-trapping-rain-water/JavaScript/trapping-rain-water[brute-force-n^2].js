@@ -1,4 +1,8 @@
-// STATUS: Time Limit Exceeded
+/* 
+  STATUS: Time Limit Exceeded
+  Time Complexity: 0(n^2)
+  Space Complexity: 0(1)
+*/
 
 const heightsArray = [0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2];
 MAX = 'max';
@@ -38,7 +42,7 @@ const getTrappedRainwater = function (heights) {
     const curentWater = getMinMax(maxLeft, maxRight, MIN) - heights[p];
     // const curentWater = Math.min(maxLeft, maxRight) - heights[p]; alternative
 
-    // calculate total water 
+    // calculate total water
     if (curentWater >= 0) {
       totalWater += curentWater;
     }

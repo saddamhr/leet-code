@@ -1,4 +1,8 @@
-# STATUS: Time Limit Exceeded
+'''
+    STATUS: Time Limit Exceeded
+    Time Complexity: 0(n^2)
+    Space Complexity: 0(1)
+'''
 
 from typing import List
 
