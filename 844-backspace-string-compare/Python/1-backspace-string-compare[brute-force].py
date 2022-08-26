@@ -9,7 +9,6 @@ class Solution:
           built_string.append(s)
         elif built_string:
           built_string.pop()
-        # built_string.append(s) if s != '#' else built_string.pop()
       return built_string
 
     def backspaceCompare(self, s: str, t: str) -> bool:

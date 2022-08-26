@@ -4,11 +4,6 @@ t = 'ad#c';
 const buildString = (string) => {
   const buildString = [];
   for (let p = 0; p < string.length; p++) {
-    // if (string[p] !== '#') {
-    //   buildString.push(string[p]);
-    // } else {
-    //   buildString.pop();
-    // }
     string[p] !== '#' ? buildString.push(string[p]) : buildString.pop();
   }
   return buildString;
@@ -30,4 +25,4 @@ var backspaceCompare = function (s, t) {
   return true;
 };
 
-console.log(backspaceCompare(s, t))
+console.log(backspaceCompare(s, t));
