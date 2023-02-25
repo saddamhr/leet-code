@@ -2,6 +2,7 @@
 
 class Solution:
     def sumOfDigits (self, N):
+        assert N >= 0 and int(N) == N, 'The number has to be a positive integer only!'
         if N == 0:
             return 0
         else:
