@@ -29,7 +29,7 @@ print(Solution().threeSum([-1,0,1,2,-1,-4]))
 Two pointer approach
 Time Complexity: O(n^2)
 Space Complexity: O(n)
-Status: TLE
+Status: Accepted
 '''
 
 class Solution:
