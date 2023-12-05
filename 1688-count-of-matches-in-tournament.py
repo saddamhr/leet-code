@@ -1,10 +1,10 @@
 class Solution:
     def numberOfMatches(self, n: int) -> int:
-        res = 0
-        while n // 2 != 0:
-            div = n // 2
-            res += div
-            n = n - div
-        return res
+        total_matches = 0
+        while n > 1:
+            matches_played_in_round = n // 2
+            total_matches += matches_played_in_round
+            n = n - matches_played_in_round
+        return total_matches
 
 print(Solution().numberOfMatches(7))
