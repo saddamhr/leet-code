@@ -9,11 +9,11 @@ class Solution:
     def decode(self, str): # "4#lint4#code4#love3#you"
         res, i = [], 0
         while i < len(str):
-            j  = i
+            j = i
             while str[j] != '#':
                 j += 1
             length = int(str[i:j])
-            res.append(str[j + 1 : j + 1 + length])
+            res.append(str[j + 1:j + 1 + length])
             i = j + 1 + length
         return res
 
